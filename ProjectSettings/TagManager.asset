@@ -7,6 +7,8 @@ TagManager:
   - Guest
   - SceneManager
   - ResultCanvas
+  - Score
+  - Sound
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   Builtin Layer 5: UI
   Builtin Layer 6: 
   Builtin Layer 7: 
-  User Layer 8: 
-  User Layer 9: 
-  User Layer 10: 
+  User Layer 8: Date
+  User Layer 9: Guest
+  User Layer 10: Back
   User Layer 11: 
   User Layer 12: 
   User Layer 13: 
@@ -44,4 +46,20 @@ TagManager:
   - name: Default
     userID: 0
     uniqueID: 0
+    locked: 0
+  - name: Back
+    userID: 1
+    uniqueID: 2935207097
+    locked: 0
+  - name: BackItem
+    userID: 2
+    uniqueID: 2553915005
+    locked: 0
+  - name: Guest
+    userID: 3
+    uniqueID: 709911001
+    locked: 0
+  - name: Date
+    userID: 4
+    uniqueID: 506836635
     locked: 0

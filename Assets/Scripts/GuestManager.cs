@@ -6,7 +6,7 @@ using System.Linq;
 //ゲストを作成、削除
 public class GuestManager : MonoBehaviour {
 
-    public GameObject prefabGuest;
+    public GameObject[] prefabGuest;
 	// Use this for initialization
 	void Start () {
 	
@@ -28,6 +28,6 @@ public class GuestManager : MonoBehaviour {
     //作成
     private void CreateGuest()
     {
-        Instantiate(prefabGuest);
+        Instantiate(prefabGuest[Random.Range(0,3)]);
     }
 }
