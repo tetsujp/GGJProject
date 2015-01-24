@@ -196,9 +196,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabGuest:
-  - {fileID: 100010, guid: b102353cca7b8cb4a8a7bb805e4f51af, type: 2}
-  - {fileID: 175854, guid: 758c01848ef790d4b8274cd341fdf588, type: 2}
-  - {fileID: 172932, guid: 0054f346cb49eb04a844cc01d96659f1, type: 2}
+  - prefab:
+    - {fileID: 172932, guid: 0054f346cb49eb04a844cc01d96659f1, type: 2}
+    - {fileID: 175854, guid: 758c01848ef790d4b8274cd341fdf588, type: 2}
+    - {fileID: 100010, guid: b102353cca7b8cb4a8a7bb805e4f51af, type: 2}
+    probability:
+    - 7
+    - 3
+    - 5
+  - prefab:
+    - {fileID: 172932, guid: 0054f346cb49eb04a844cc01d96659f1, type: 2}
+    - {fileID: 175854, guid: 758c01848ef790d4b8274cd341fdf588, type: 2}
+    - {fileID: 100010, guid: b102353cca7b8cb4a8a7bb805e4f51af, type: 2}
+    probability:
+    - 5
+    - 7
+    - 3
+  - prefab:
+    - {fileID: 172932, guid: 0054f346cb49eb04a844cc01d96659f1, type: 2}
+    - {fileID: 175854, guid: 758c01848ef790d4b8274cd341fdf588, type: 2}
+    - {fileID: 100010, guid: b102353cca7b8cb4a8a7bb805e4f51af, type: 2}
+    probability:
+    - 5
+    - 5
+    - 5
+  guestKindProbability:
+  - 15
+  - 15
+  - 15
 --- !u!4 &464141648
 Transform:
   m_ObjectHideFlags: 0

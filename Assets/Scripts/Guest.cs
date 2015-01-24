@@ -43,16 +43,18 @@ public class Guest: MonoBehaviour
     // Use this for initialization
 	void Start () {
 
-        guestKind=GetGuestKind();
-        nowSprite = GetComponent<SpriteRenderer>();
-        nowSprite.sprite = guestSprite[(int)guestKind].spriteList[0];
         //セット
         IT_Gesture.onSwipeE += OnSwipe;
         IT_Gesture.onMultiTapE += OnMultiTap;
         //アクション
         StartTween();
 	}
-	
+    public void SetGuestKind(GuestKind kind)
+    {
+        guestKind = kind;
+        nowSprite = GetComponent<SpriteRenderer>();
+        nowSprite.sprite = guestSprite[(int)guestKind].spriteList[0];
+    }
 	// Update is called once per frame
 	void Update () {
 	
@@ -114,10 +116,6 @@ public class Guest: MonoBehaviour
         IT_Gesture.onSwipeE -= OnSwipe;
         IT_Gesture.onMultiTapE -= OnMultiTap;
     }
-    private GuestKind GetGuestKind()
-    {
-        return GuestKind.ashigaru;
-        //Random.Range();
-    }
+
 
 }
