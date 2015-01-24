@@ -14,6 +14,7 @@ public class Guest: MonoBehaviour
     public float moveToCenter;//
     public float moveToEnd;
     public float moveSpeed;
+    public float speedUpValue;//1体毎に時間を早める
     public float delayTime;
     private Hashtable moveTable = new Hashtable();//iTween用ハッシュ
     #endregion
@@ -41,19 +42,22 @@ public class Guest: MonoBehaviour
 
 
     // Use this for initialization
-	void Start () {
+	public void Start () {
 
         //セット
         IT_Gesture.onSwipeE += OnSwipe;
         IT_Gesture.onMultiTapE += OnMultiTap;
-        //アクション
-        StartTween();
+
 	}
-    public void SetGuestKind(GuestKind kind)
+    public void SetGuestKind(GuestKind kind,int count)
     {
         guestKind = kind;
         nowSprite = GetComponent<SpriteRenderer>();
         nowSprite.sprite = guestSprite[(int)guestKind].spriteList[0];
+        //アクション
+        //
+        moveSpeed += speedUpValue*count;
+        StartTween();
     }
 	// Update is called once per frame
 	void Update () {

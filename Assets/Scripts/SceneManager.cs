@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum SceneName { SceneMain, SceneTitle, SceneResult }
-
 public class SceneManager : MonoBehaviour {
 
-    public GameObject resultCanvas;
 	void Start () {
         
 	}
@@ -14,9 +11,13 @@ public class SceneManager : MonoBehaviour {
 	void Update () {
 	
 	}
-    public void SetScene(SceneName nextScene)
+
+    public void SetNextScene()
     {
-        Debug.Log("Scene");
-        Instantiate(resultCanvas);
+        Invoke("InvokeNextScene", 2f);
+    }
+    void InvokeNextScene()
+    {
+        Application.LoadLevel("Title");
     }
 }

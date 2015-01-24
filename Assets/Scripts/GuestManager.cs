@@ -18,6 +18,7 @@ public class GuestManager : MonoBehaviour {
     //どのキャラがでるかの確率
     public float[] guestKindProbability;
     private float sumProbability;
+    private int instanceCount=0;
 	// Use this for initialization
 	void Start () {
         //確率の合計
@@ -63,8 +64,9 @@ public class GuestManager : MonoBehaviour {
                         //生成
                         GameObject instance= (GameObject)Instantiate(prefabGuest[guest].prefab[state]);
                         //スプライト設定
-                        instance.GetComponent<Guest>().SetGuestKind((GuestKind)guest);
+                        instance.GetComponent<Guest>().SetGuestKind((GuestKind)guest,instanceCount);
                         instanceFlag = true;
+                        instanceCount++;
                         break;
                     }
                 }

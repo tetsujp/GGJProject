@@ -346,7 +346,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414084, guid: 45721c4df43c6a444b9afc3d3a34c3fc, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 21214084, guid: 45721c4df43c6a444b9afc3d3a34c3fc, type: 2}
       propertyPath: m_Sprite
@@ -774,7 +774,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 98e68c057badd6848ac979be1fd7eb24, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98e68c057badd6848ac979be1fd7eb24, type: 2}
@@ -1372,7 +1372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bee00a986f8d754290230306d3ff0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resultCanvas: {fileID: 185804, guid: 02b22e2ff449ea14eb468539ddb062b9, type: 2}
 --- !u!4 &1962194854
 Transform:
   m_ObjectHideFlags: 0

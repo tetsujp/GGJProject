@@ -70,7 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveToCenter: 0
   moveToEnd: 5
-  moveSpeed: 4
+  moveSpeed: 2
+  speedUpValue: 1
   delayTime: 2
   guestSprite:
   - spriteList:

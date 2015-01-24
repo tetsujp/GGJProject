@@ -70,7 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveToCenter: 0
   moveToEnd: 5
-  moveSpeed: 4
+  moveSpeed: 2
+  speedUpValue: 1
   delayTime: 2
   guestSprite:
   - spriteList:
@@ -89,6 +90,8 @@ MonoBehaviour:
   - 30
   - 30
   - 60
+  deathEffect: {fileID: 128508, guid: 9bf90e22bc379cb46b9a82a9ae30a04e, type: 2}
+  deathTime: 1
 --- !u!212 &21200010
 SpriteRenderer:
   m_ObjectHideFlags: 1
