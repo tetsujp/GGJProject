@@ -4,11 +4,13 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
-    private static float nowScore;
-    private float highScore;
+    public static float nowScore;
+    public static float MaxScore = 10000;//仮決め
+    public float highScore;
     private Sound sound;
     // Use this for initialization
 	void Start () {
+        DontDestroyOnLoad(gameObject);
         sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<Sound>();
 	}
 	
@@ -20,7 +22,8 @@ public class Score : MonoBehaviour {
     public static void IncScore(float score)
     {
         nowScore += score;
-        Sound.Instance.PlaySmileSound();
+        if (nowScore > MaxScore) nowScore = MaxScore;
+        //Sound.Instance.PlaySmileSound();
     }
     public static void DecScore(float score)
     {

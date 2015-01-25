@@ -18,6 +18,6 @@ public class SceneManager : MonoBehaviour {
     }
     void InvokeNextScene()
     {
-        Application.LoadLevel("Title");
+        Application.LoadLevel("Result");
     }
 }

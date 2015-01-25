@@ -8,12 +8,13 @@ public class StartCanvas : MonoBehaviour {
 	// Use this for initialization
 
     public GameObject CanvasMoveButton;
-    private Text messageText;
+    //private Text messageText;
+    //public GameObject messageText;
     public float moveToEnd;
     public float moveSpeed;
     void Start()
     {
-        messageText = GetComponent<Text>();
+        /*messageText = GetComponent<Text>();
         messageText.text = "";
         messageText.text += "時は戦国…　「アイドル戦国時代」！！\n";
         messageText.text += "多くの猛者が名乗りを上げては、時代の波に飲まれ散っていった…\n";
@@ -23,18 +24,18 @@ public class StartCanvas : MonoBehaviour {
         messageText.text += "伊達政宗は、アイドルの戦場…　「握手会」へ出陣する\n";
         messageText.text += "君は、彼女の命を守りきれるか！？\n";
         messageText.text += "今…　戦国乱世の歴史が動く！！\n";
-        messageText.text += "（Let’s Party!!）\n";
-
+        //messageText.text += "（Let’s Party!!）\n";
+        */
         
 //        iTween.MoveTo(messageText.gameObject,moveTable);
-        messageText.gameObject.rigidbody.velocity+= new Vector3(0,moveSpeed,0);
+        rigidbody.velocity+= new Vector3(0,moveSpeed,0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (messageText.gameObject.transform.localPosition.y > moveToEnd)
+        if (transform.localPosition.y > moveToEnd)
         {
-            messageText.gameObject.rigidbody.velocity = Vector3.zero;
+            rigidbody.velocity = Vector3.zero;
 
             CanvasMoveButton.SetActive(true);
             //Debug.Log("next");

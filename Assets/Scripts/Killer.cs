@@ -7,18 +7,10 @@ public class Killer : Guest {
     enum GuestSprite { first, action, smile }
 	// Use this for initialization
     public float[] killerScorePoint;
-    public GameObject deathEffect;
-    private bool isClearDeath=false;
     private bool isNowAction = false;
     float startActionTime;
-    public float deathTime;//スタートをインスペクターで設定
-    private SceneManager sceneManager;
 
-    void Start()
-    {
-        base.Start();
-        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManager>();
-    }
+    
     override public void HitAction()
     {
         nowSprite.sprite = guestSprite[(int)guestKind].spriteList[(int)GuestSprite.action];
@@ -38,6 +30,7 @@ public class Killer : Guest {
             {
                 isClearDeath = true;
                 Instantiate(deathEffect);
+                Sound.Instance.KillSount();
                 //終了する
                 iTween.Stop();
                 sceneManager.SetNextScene();
@@ -48,16 +41,18 @@ public class Killer : Guest {
     override public void OnSwipe(SwipeInfo sw)
     {
         //中心に来ている
-        if (isCollisionToDate)
+        if (isCollisionToDate&&!isCheckGuest)
         {
             //キラーなので殺せた
             Score.IncScore(killerScorePoint[(int)guestKind]);
+            Sound.Instance.PlaySmileSound();
             nowSprite.sprite = guestSprite[(int)guestKind].spriteList[(int)GuestSprite.smile];
             isClearDeath=true;
+            isCheckGuest = true;
         }
     }
     //処理を行わない
-    override public void OnMultiTap(Tap Tap)
+    override public void OnTouchDown(Touch tap) 
     {
 
     }

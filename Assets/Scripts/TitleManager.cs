@@ -7,6 +7,7 @@ public class TitleManager : MonoBehaviour {
     public GameObject manualCanvas;
     public GameObject startCanvas;
 	void Start () {
+
         menuCanvas.SetActive(false);
         manualCanvas.SetActive(false);
 

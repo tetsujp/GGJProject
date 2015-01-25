@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 農民、サラリーマン、足軽、親衛隊、徳川
 /// </summary>
-public enum GuestKind {nomin,sara,ashigaru,lover,tokugawa }
+public enum GuestKind {nomin,sara,ashigaru,lover,syojo,tokugawa }
 public class Guest: MonoBehaviour
 {
     //移動用座標
@@ -15,8 +15,14 @@ public class Guest: MonoBehaviour
     public float moveToEnd;
     public float moveSpeed;
     public float speedUpValue;//1体毎に時間を早める
-    public float delayTime;
+    //public float delayTime;
+
+    public float deathTime;//スタートをインスペクターで設定
+    public float deathUpValue;
     private Hashtable moveTable = new Hashtable();//iTween用ハッシュ
+    public GameObject deathEffect;
+    protected bool isClearDeath = false;
+    protected SceneManager sceneManager;
     #endregion
     //Sprite
     #region
@@ -36,18 +42,16 @@ public class Guest: MonoBehaviour
     #region
     //public bool iskiller;//暗殺者、スワイプできなかったらゲームオーバー
     //public bool isMiyage;//差し入れ、タップできたらスコアアップ
-    [System.NonSerialized]public bool isCheckGuest;//スワイプ、タップなどで仕分け終わった
+    [System.NonSerialized]public bool isCheckGuest=false;//スワイプ、タップなどで仕分け終わった
     #endregion
     protected bool isCollisionToDate = false;
-
-
     // Use this for initialization
 	public void Start () {
-
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManager>();
         //セット
         IT_Gesture.onSwipeE += OnSwipe;
-        IT_Gesture.onMultiTapE += OnMultiTap;
-
+        //IT_Gesture.onMultiTapE += OnMultiTap;
+        IT_Gesture.onTouchDownE += OnTouchDown;
 	}
     public void SetGuestKind(GuestKind kind,int count)
     {
@@ -57,6 +61,8 @@ public class Guest: MonoBehaviour
         //アクション
         //
         moveSpeed += speedUpValue*count;
+        deathTime -= deathUpValue * count;
+        if (deathTime < 0.01f) deathTime = 0.01f;
         StartTween();
     }
 	// Update is called once per frame
@@ -70,6 +76,7 @@ public class Guest: MonoBehaviour
     {
         moveTable.Add("x", moveToCenter);
         moveTable.Add("speed", moveSpeed);
+        moveTable.Add("time", moveSpeed);
         moveTable.Add("oncomplete", "CompleteHandler");	// トゥイーン終了時にCompleteHandler()を呼ぶ
         iTween.MoveTo(gameObject, moveTable);
 
@@ -80,7 +87,8 @@ public class Guest: MonoBehaviour
         moveTable = new Hashtable();
         moveTable.Add("x", moveToEnd);
         moveTable.Add("speed", moveSpeed);
-        moveTable.Add("delay", delayTime);
+        //moveTable.Add("time", moveSpeed);
+        moveTable.Add("delay", deathTime);
         moveTable.Add("oncomplete", "EndDestory");
         iTween.MoveTo(gameObject, moveTable);
     }
@@ -94,9 +102,26 @@ public class Guest: MonoBehaviour
     }
     //入力
     #region
-    public virtual void OnSwipe(SwipeInfo sw){}
+    public virtual void OnSwipe(SwipeInfo sw){
+        //中心に来ている
+        if (isCollisionToDate&&!isClearDeath)
+        {
+            //殺してしまった
+            //nowSprite.sprite = guestSprite[(int)guestKind].spriteList[(int)GuestSprite.miss];
+            //Score.DecScore(normalScorePoint);
+            Instantiate(deathEffect);
+            Sound.Instance.KillSount();
+            //終了する
+            iTween.Stop();
+            sceneManager.SetNextScene();
+            isClearDeath = true;
 
-    public virtual void OnMultiTap(Tap tap){}
+        }
+    }
+
+    //public virtual void OnMultiTap(Tap tap){}
+    public virtual void OnTouchDown(Touch tap) {
+    }
     #endregion
     //当たり判定
     #region
@@ -118,7 +143,8 @@ public class Guest: MonoBehaviour
     void OnDestroy()
     {
         IT_Gesture.onSwipeE -= OnSwipe;
-        IT_Gesture.onMultiTapE -= OnMultiTap;
+        //IT_Gesture.onMultiTapE -= OnMultiTap;
+        IT_Gesture.onTouchDownE -= OnTouchDown;
     }
 
 

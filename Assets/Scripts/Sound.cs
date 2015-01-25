@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Sound : MonoBehaviour {
 
+    AudioSource[] audioSet;
     protected static Sound instance;
-
     public static Sound Instance
     {
         get
@@ -22,8 +22,21 @@ public class Sound : MonoBehaviour {
             return instance;
         }
     }
+    void Start()
+    {
+        audioSet = GetComponents<AudioSource>();
+    }
+
     public void PlaySmileSound()
     {
-        audio.Play();
+        audioSet[0].Play();
+    }
+    public void KillSount()
+    {
+        audioSet[1].Play();
+    }
+    public void MissSound()
+    {
+        audioSet[2].Play();
     }
 }
